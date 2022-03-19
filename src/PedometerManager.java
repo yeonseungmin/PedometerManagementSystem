@@ -67,5 +67,6 @@ public class PedometerManager {
 		System.out.print("Student Id");
 		int studentId = input.nextInt();
 		
+		
 	}
 }
