@@ -41,7 +41,7 @@ public class PedometerManager {
 		Scanner input = new Scanner(System.in);
 		System.out.print("TodayPedometer :");
 		int todaypedometer = input.nextInt();
-		System.out.print("weekPedometer :");
+		System.out.print("WeekAveragePedometer :");
 		String weekpedometer = input.next();		
 	}
 
