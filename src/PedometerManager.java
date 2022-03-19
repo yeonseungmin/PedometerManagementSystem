@@ -20,7 +20,7 @@ public class PedometerManager {
 			System.out.println("Select one number between 1-6: ");
 			num = input.nextInt();
 			if (num == 1) {
-						addpedometer();
+				addpedometer();
 			}
 			else if (num == 2) {
 				deletepedometer();
@@ -39,29 +39,33 @@ public class PedometerManager {
 
 	private static void addpedometer() {
 		Scanner input = new Scanner(System.in);
-		System.out.print("TodayPedometer :");
-		int todaypedometer = input.nextInt();
-		System.out.print("WeekAveragePedometer :");
-		String weekpedometer = input.next();		
+		System.out.print("Student Id");
+		int studentId = input.nextInt();
+		System.out.print("student Name:");
+		String studentName = input.next();
+		System.out.print("Email address:");
+		String studentEmail = input.next();	
+		System.out.print("Phone number:");
+		String studentPhone = input.next();	
 	}
 
 	private static void deletepedometer() {
 		Scanner input = new Scanner(System.in);
-		System.out.print("TodayPedometer :");
-		int todaypedometer = input.nextInt();
+		System.out.print("Student Id");
+		int studentId = input.nextInt();
 		
 	}
 
 	private static void editpedometer() {
 		Scanner input = new Scanner(System.in);
-		System.out.print("TodayPedometer :");
-		int todaypedometer = input.nextInt();
+		System.out.print("Student Id");
+		int studentId = input.nextInt();
 	}
 
 	private static void viewpedometer() {
 		Scanner input = new Scanner(System.in);
-		System.out.print("TodayPedometer :");
-		int todaypedometer = input.nextInt();
+		System.out.print("Student Id");
+		int studentId = input.nextInt();
 		
 	}
 }
