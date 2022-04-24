@@ -13,12 +13,12 @@ public class PedometerManager {
 			System.out.println("1. Add Pedometer");
 			System.out.println("2. Delete Pedometer");
 			System.out.println("3. Edit Pedometer");
-			System.out.println("4. View Pedometer");
+			System.out.println("4. View Pedometers");
 			System.out.println("5. Exit");
 			System.out.println("Select one number between 1-6: ");
 			num = input.nextInt();
 			if (num == 1) {
-				studentManager.addstudent();
+				studentManager.addStudent();
 			}
 			else if (num == 2) {
 				studentManager.deletestudent();
@@ -27,7 +27,7 @@ public class PedometerManager {
 				studentManager.editstudent();
 			}
 			else if (num == 4) {
-				studentManager.viewstudent();			
+				studentManager.viewStudents();			
 			}
 			else {
 				continue;
