@@ -4,10 +4,12 @@ import java.util.Scanner;
 import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
 import student.Student;
+import student.StudentInput;
 import student.StudentKind;
+import student.UniversityStudent;
 
 public class StudentManager {
-	ArrayList<Student> students = new ArrayList<Student>();
+	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
 	Scanner input;
 	StudentManager(Scanner input){
 		this.input = input;
@@ -15,7 +17,7 @@ public class StudentManager {
 	
 	public void addStudent() {
 		int kind = 0;
-		Student student;
+		StudentInput studentInput;
 		while ( kind != 1 && kind != 2) {
 			System.out.println("1 for University");
 			System.out.println("2 for High Shcool");
@@ -23,21 +25,21 @@ public class StudentManager {
 			System.out.print("Select num 1, 2, or 3 for Student Kind :");
 			kind  = input.nextInt();
 			if (kind == 1) {
-				student = new Student(StudentKind.University);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new UniversityStudent(StudentKind.University);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else if (kind == 2) {
-				student = new HighSchoolStudent(StudentKind.HighSchool);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new HighSchoolStudent(StudentKind.HighSchool);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else if (kind == 3) {
-				student = new ElementarySchoolStudent(StudentKind.ElementarySchool);
-				student.getUserInput(input);
-				students.add(student);
+				studentInput = new ElementarySchoolStudent(StudentKind.ElementarySchool);
+				studentInput.getUserInput(input);
+				students.add(studentInput);
 				break;
 			}
 			else {
@@ -74,8 +76,8 @@ public class StudentManager {
 		System.out.print(" Student Id: ");
 		int studentId = input.nextInt();
 		for (int i = 0; i<students.size(); i ++) {
-			Student student = students.get(i);
-		if(student.getId() == studentId) {
+			StudentInput studentInput = students.get(i);
+		if(studentInput.getId() == studentId) {
 			int num = -1;
 			while (num != 5) { 
 			System.out.println("** Student Info Edit Menu **");
@@ -89,22 +91,22 @@ public class StudentManager {
 			if (num == 1) {
 				System.out.print(" Student ID: ");
 				int id = input.nextInt();
-				student.setId(id );
+				studentInput.setId(id );
 			}
 			else if (num == 2) {
 				System.out.print(" Student Name: ");
 				String name = input.next();
-				student.setName(name );
+				studentInput.setName(name );
 			}
 			else if (num == 3) {
 				System.out.print(" Student Email: ");
 				String email = input.next();
-				student.setEmail(email );
+				studentInput.setEmail(email );
 			}
 			else if (num == 4) {
 				System.out.print(" Phone number: ");
 				String phone = input.next();
-				student.setPhone(phone );
+				studentInput.setPhone(phone );
 			}
 			else {
 				continue;

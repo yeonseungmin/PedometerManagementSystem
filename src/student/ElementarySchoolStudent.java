@@ -2,7 +2,7 @@ package student;
 
 import java.util.Scanner;
 
-public class ElementarySchoolStudent extends Student {
+public class ElementarySchoolStudent extends Student implements StudentInput {
 	
 	protected String parentEmail;
 	protected String parentPhone;

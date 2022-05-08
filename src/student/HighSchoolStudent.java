@@ -2,7 +2,7 @@ package student;
 
 import java.util.Scanner;
 
-public class HighSchoolStudent extends Student {
+public class HighSchoolStudent extends Student implements StudentInput{
 	
 	public HighSchoolStudent(StudentKind kind) {
 		super(kind);
@@ -21,7 +21,7 @@ public class HighSchoolStudent extends Student {
 		char answer = 'X';
 		while ( answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N')
 		{
-			System.out.print("Do you habe an email address? (Y/N)");
+			System.out.print("Do you have a email address? (Y/N)");
 			answer = input.next().charAt(0);
 			if(answer == 'y' || answer == 'Y') {
 				System.out.print("Email address: ");
@@ -41,6 +41,27 @@ public class HighSchoolStudent extends Student {
 		String phone = input.next();
 		this.setPhone(phone);
 		
+	}
+	
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind){
+		case University :
+			skind = "Univ.";
+			break;
+		case HighSchool :
+			skind = "High.";
+			break;
+		case MiddleSchool :
+			skind = "Middle.";
+			break;
+		case ElementarySchool :
+			skind = "Elementary.";
+			break;
+		default :
+			
+		}
+		System.out.println("kind:" + skind + " name: " + name + " id: " + id + " email: " +email + " phone: " + phone);
 	}
 	
 }
