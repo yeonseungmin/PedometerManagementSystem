@@ -2,7 +2,9 @@ package student;
 
 import java.util.Scanner;
 
-public abstract class Student {
+import exception.EmailFormatException;
+
+public abstract class Student implements StudentInput {
 
 		protected StudentKind kind = StudentKind.University;
 		protected String name;
@@ -68,7 +70,11 @@ public abstract class Student {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) throws EmailFormatException {
+		if (!email.contains("@") && !email.equals("")) {
+			throw new EmailFormatException();
+		}
+		
 		this.email = email;
 	}
 
@@ -82,4 +88,53 @@ public abstract class Student {
 
 	public abstract void printInfo();
 
+	public void setStudentID(Scanner input) {
+		System.out.print(" Student ID: ");
+		int id = input.nextInt();
+		this.setId(id );
+	}
+	
+	public void setStudentName( Scanner input) {
+		System.out.print(" Student Name: ");
+		String name = input.next();
+		this.setName(name );
+	}
+	
+	public void setStudentEmail(Scanner input) {
+		String email = "";
+		while (!email.contains("@")) {
+		
+			System.out.print(" Student Email: ");
+			email = input.next();
+			try {
+				this.setEmail(email );
+			} catch (EmailFormatException e) {
+				System.out.println("Incorrect Email Format. put the e-mail address that contains @");
+			}
+		}
+	}
+	public void setStudentPhone( Scanner input) {
+		System.out.print(" Phone number: ");
+		String phone = input.next();
+		this.setPhone(phone );
+	}
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind){
+		case University :
+			skind = "Univ.";
+			break;
+		case HighSchool :
+			skind = "High.";
+			break;
+		case MiddleSchool :
+			skind = "Middle.";
+			break;
+		case ElementarySchool :
+			skind = "Elementary.";
+			break;
+		default :
+		}
+		return skind;
+	}
 }

@@ -2,7 +2,9 @@ package student;
 
 import java.util.Scanner;
 
-public class ElementarySchoolStudent extends Student implements StudentInput {
+import exception.EmailFormatException;
+
+public class ElementarySchoolStudent extends TeenageStudent{
 	
 	protected String parentEmail;
 	protected String parentPhone;
@@ -10,80 +12,46 @@ public class ElementarySchoolStudent extends Student implements StudentInput {
 	public ElementarySchoolStudent(StudentKind kind) {
 		super(kind);
 	}
+	
 
 	public void getUserInput(Scanner input) {
-		
-		System.out.print("Student Id: ");
-		int id  = input.nextInt();
-		this.setId(id);
-		
-		System.out.print("student Name: ");
-		String name = input.next();
-		this.setName(name);
-		
+		setStudentID( input);
+		setStudentName( input);
+		setStudentEmailwithYN( input);
+		setParentEmailwithYN( input);
+		setStudentPhone(input);	
+	}
+	
+	public void setParentEmailwithYN(Scanner input) {
 		char answer = 'X';
-		while ( answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N')
-		{
-			System.out.print("Do you have a email address? (Y/N)");
-			answer = input.next().charAt(0);
-			if(answer == 'y' || answer == 'Y') {
-				System.out.print("Email address: ");
-				String email = input.next();
-				this.setEmail(email);
-				break;
-			}
-			else if (answer == 'n' || answer == 'N') {
-				this.setEmail("");
-				break;
-			}
-			else {
-				
-			}
-		}
-		
-		answer = 'X';
 		while ( answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N')
 		{
 			System.out.print("Do you have a parent's email address? (Y/N)");
 			answer = input.next().charAt(0);
-			if(answer == 'y' || answer == 'Y') {
-				System.out.print("parent's email address: ");
-				String email = input.next();
-				this.setEmail(email);
-				break;
+			try {
+				if(answer == 'y' || answer == 'Y') {
+					setStudentEmail(input);
+					break;
+				}
+				else if (answer == 'n' || answer == 'N') {
+					this.setEmail("");
+					break;
+				}
+				else {
+					
+				}
 			}
-			else if (answer == 'n' || answer == 'N') {
-				this.setEmail("");
-				break;
-			}
-			else {
-				
+			catch(EmailFormatException e) {
+				System.out.println("Incorrect Email Format. put the e-mail address that contains @");
 			}
 		}
-		System.out.print("Phone number: ");
-		String phone = input.next();
-		this.setPhone(phone);
-		
+
 	}
 	
 	public void printInfo() {
-		String skind = "none";
-		switch(this.kind){
-		case University :
-			skind = "Univ.";
-			break;
-		case HighSchool :
-			skind = "High.";
-			break;
-		case MiddleSchool :
-			skind = "Middle.";
-			break;
-		case ElementarySchool :
-			skind = "Elementary.";
-			break;
-		default :
-			
-		}
+		String skind = getKindString();
 		System.out.println("kind:" + skind + " name: " + name + " id: " + id + " email: " + email + " phone: " + phone + " parent's email: " + email + " parent's phone: " + phone);
 	}
+	
+
 }

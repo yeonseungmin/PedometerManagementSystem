@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import student.ElementarySchoolStudent;
@@ -18,7 +19,8 @@ public class StudentManager {
 	public void addStudent() {
 		int kind = 0;
 		StudentInput studentInput;
-		while ( kind != 1 && kind != 2) {
+		while ( kind < 1 || kind > 2) {
+			try {
 			System.out.println("1 for University");
 			System.out.println("2 for High Shcool");
 			System.out.println("3 for Elementary Shcool");
@@ -45,13 +47,25 @@ public class StudentManager {
 			else {
 				System.out.print("Select num for Student Kind between 1 and 2:");
 			}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 3!");
+				if (input.hasNext()) {
+					input.next();
+			}
+			kind = -1;
 		}
-
+		}
 	}
 
 	public void deletestudent() {
 		System.out.print(" Student Id: ");
 		int studentId = input.nextInt();
+		int index = findIndex(studentId);
+		removefromStudents(index,studentId);
+		
+	}
+	public int findIndex(int studentId) {
 		int index = -1;
 		for (int i = 0; i<students.size(); i++) {
 			if(students.get(i).getId() == studentId) {
@@ -59,14 +73,18 @@ public class StudentManager {
 				break;
 			}
 		}
-		
+		return index;
+	}
+	
+	public int removefromStudents(int index, int studentId) {
 		if(index >= 0) {
 			students.remove(index);
 			System.out.println("the student" + studentId +"is deleted");
+			return 1;
 		}
 		else {
 			System.out.println("the student has not been registered");
-			return;
+			return -1;
 		}
 	}
 
@@ -76,55 +94,50 @@ public class StudentManager {
 		System.out.print(" Student Id: ");
 		int studentId = input.nextInt();
 		for (int i = 0; i<students.size(); i ++) {
-			StudentInput studentInput = students.get(i);
-		if(studentInput.getId() == studentId) {
+			StudentInput student = students.get(i);
+		if(student.getId() == studentId) {
 			int num = -1;
 			while (num != 5) { 
-			System.out.println("** Student Info Edit Menu **");
-			System.out.println("1. Edit Id ");
-			System.out.println("2. Edit Name ");
-			System.out.println("3. Edit Email ");
-			System.out.println("4. View phone ");
-			System.out.println("5. Exit ");
-			System.out.println("Select one number between 1-6: ");
+				showEditMenu();
 			num = input.nextInt();
-			if (num == 1) {
-				System.out.print(" Student ID: ");
-				int id = input.nextInt();
-				studentInput.setId(id );
-			}
-			else if (num == 2) {
-				System.out.print(" Student Name: ");
-				String name = input.next();
-				studentInput.setName(name );
-			}
-			else if (num == 3) {
-				System.out.print(" Student Email: ");
-				String email = input.next();
-				studentInput.setEmail(email );
-			}
-			else if (num == 4) {
-				System.out.print(" Phone number: ");
-				String phone = input.next();
-				studentInput.setPhone(phone );
-			}
-			else {
+			switch(num) {
+			case 1:
+				student.setStudentID(input);
+				break;
+			case 2:
+				student.setStudentName(input);
+				break;
+			case 3:
+				student.setStudentEmail(input);
+				break;
+			case 4:
+				student.setStudentPhone(input);
+				break;
+			default:
 				continue;
-			} // if
-			}// while
-			break;
-			}// if
-		}// for
+			}
+		}// while
+		break;
+	}// if
+	}// for
 	}
 
 	public void viewStudents() {
-//		System.out.print("Student Id: ");
-//		int studentId = input.nextInt();
 		System.out.println("# of registered students: " + students.size());
 		for (int i = 0; i<students.size(); i++) {
 			students.get(i).printInfo();
 		}
-		
-		
+	}
+	
+
+	
+	public void showEditMenu() {
+		System.out.println("** Student Info Edit Menu **");
+		System.out.println("1. Edit Id ");
+		System.out.println("2. Edit Name ");
+		System.out.println("3. Edit Email ");
+		System.out.println("4. View phone ");
+		System.out.println("5. Exit ");
+		System.out.println("Select one number between 1-6: ");
 	}
 }
