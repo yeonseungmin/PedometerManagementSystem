@@ -1,11 +1,15 @@
 package student;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.EmailFormatException;
 
-public abstract class Student implements StudentInput {
-
+public abstract class Student implements StudentInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6502750014073922126L;
 		protected StudentKind kind = StudentKind.University;
 		protected String name;
 		protected int id;
