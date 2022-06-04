@@ -10,21 +10,27 @@ public interface StudentInput {
 
 	public void setId(int id);
 	
+	public String getName();
+	
 	public void setName(String name);
+	
+	public String getEmail();
 	
 	public void setEmail(String email) throws EmailFormatException;
 	
 	public void setPhone(String phone);
 	
+	public String getPhone();
+	
 	public void getUserInput(Scanner input);
 	
 	public void printInfo();
 	
-	public void setStudentID( Scanner input);
+	public void setStudentID(Scanner input);
 	
-	public void setStudentName( Scanner input);
+	public void setStudentName(Scanner input);
 	
-	public void setStudentEmail( Scanner input);
+	public void setStudentEmail(Scanner input);
 	
-	public void setStudentPhone( Scanner input);
+	public void setStudentPhone(Scanner input);
 }

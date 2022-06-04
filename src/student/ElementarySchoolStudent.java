@@ -15,10 +15,10 @@ public class ElementarySchoolStudent extends TeenageStudent{
 	
 
 	public void getUserInput(Scanner input) {
-		setStudentID( input);
-		setStudentName( input);
-		setStudentEmailwithYN( input);
-		setParentEmailwithYN( input);
+		setStudentID(input);
+		setStudentName(input);
+		setStudentEmailwithYN(input);
+		setParentEmailwithYN(input);
 		setStudentPhone(input);	
 	}
 	

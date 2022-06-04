@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 
 import student.ElementarySchoolStudent;
 import student.HighSchoolStudent;
+import student.Student;
 import student.StudentInput;
 import student.StudentKind;
 import student.UniversityStudent;
@@ -21,6 +23,9 @@ public class StudentManager implements Serializable {
 		this.input = input;
 	}
 	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
 	public void addStudent() {
 		int kind = 0;
 		StudentInput studentInput;
@@ -134,7 +139,13 @@ public class StudentManager implements Serializable {
 		}
 	}
 	
-
+	public int size() {
+		return students.size();
+	}
+	
+	public StudentInput get(int index) {
+		return (Student) students.get(index);
+	}
 	
 	public void showEditMenu() {
 		System.out.println("** Student Info Edit Menu **");
@@ -145,4 +156,9 @@ public class StudentManager implements Serializable {
 		System.out.println("5. Exit ");
 		System.out.println("Select one number between 1-6: ");
 	}
+
+
+
+
+
 }

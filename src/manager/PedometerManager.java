@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +10,7 @@ import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class PedometerManager {
@@ -21,37 +24,42 @@ public class PedometerManager {
 		if(studentManager == null) {
 			studentManager = new StudentManager(input);
 		}
+		else {
+			studentManager.setScanner(input);
+		}
+		
+		WindowFrame frame = new WindowFrame(studentManager);
 		
 		selectMenu(input, studentManager);
 		putObject(studentManager, "studentmanager.ser");
 		
 	}
 
-	public static void selectMenu(Scanner input,StudentManager studentManager ) {
+	public static void selectMenu(Scanner input, StudentManager studentManager) {
 		int num = -1;
 		while (num !=5) {
 			try {
-			showMenu();
-			num = input.nextInt();
-			switch(num) {
-			case 1:
-				studentManager.addStudent();
-				logger.log("add a student");
-				break;
-			case 2:
-				studentManager.deletestudent();
-				logger.log("delete a student");
-				break;
-			case 3:
-				studentManager.editstudent();
-				logger.log("edit a student");
-				break;
-			case 4:
-				studentManager.viewStudents();	
-				logger.log("view a list of student");
-				break;
-			default:
-				continue;
+				showMenu();
+				num = input.nextInt();
+				switch(num) {
+				case 1:
+					studentManager.addStudent();
+					logger.log("add a student");
+					break;
+				case 2:
+					studentManager.deletestudent();
+					logger.log("delete a student");
+					break;
+				case 3:
+					studentManager.editstudent();
+					logger.log("edit a student");
+					break;
+				case 4:
+					studentManager.viewStudents();	
+					logger.log("view a list of student");
+					break;
+				default:
+					continue;
 			}
 			}
 			catch(InputMismatchException e) {
