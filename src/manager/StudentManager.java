@@ -3,9 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import student.ElementarySchoolStudent;
-import student.HighSchoolStudent;
 import student.Student;
 import student.StudentInput;
 import student.StudentKind;
@@ -26,46 +23,20 @@ public class StudentManager implements Serializable {
 	public void setScanner(Scanner input) {
 		this.input = input;
 	}
+	
+	public void addStudent(String id, String name, String weight, String hour, String kcalory) {
+		StudentInput studentInput = new UniversityStudent(StudentKind.University);
+		studentInput.getUserInput(input);
+		students.add(studentInput);
+	}
+	
+	public void addStudent(StudentInput studentInput) {
+		students.add(studentInput);
+	}
+	
 	public void addStudent() {
 		int kind = 0;
 		StudentInput studentInput;
-		while ( kind < 1 || kind > 2) {
-			try {
-			System.out.println("1 for University");
-			System.out.println("2 for High Shcool");
-			System.out.println("3 for Elementary Shcool");
-			System.out.print("Select num 1, 2, or 3 for Student Kind :");
-			kind  = input.nextInt();
-			if (kind == 1) {
-				studentInput = new UniversityStudent(StudentKind.University);
-				studentInput.getUserInput(input);
-				students.add(studentInput);
-				break;
-			}
-			else if (kind == 2) {
-				studentInput = new HighSchoolStudent(StudentKind.HighSchool);
-				studentInput.getUserInput(input);
-				students.add(studentInput);
-				break;
-			}
-			else if (kind == 3) {
-				studentInput = new ElementarySchoolStudent(StudentKind.ElementarySchool);
-				studentInput.getUserInput(input);
-				students.add(studentInput);
-				break;
-			}
-			else {
-				System.out.print("Select num for Student Kind between 1 and 2:");
-			}
-			}
-			catch(InputMismatchException e) {
-				System.out.println("Please put an integer between 1 and 3!");
-				if (input.hasNext()) {
-					input.next();
-			}
-			kind = -1;
-		}
-		}
 	}
 
 	public void deletestudent() {
@@ -98,8 +69,6 @@ public class StudentManager implements Serializable {
 		}
 	}
 
-	
-
 	public void editstudent() {
 		System.out.print(" Student Id: ");
 		int studentId = input.nextInt();
@@ -118,11 +87,9 @@ public class StudentManager implements Serializable {
 				student.setStudentName(input);
 				break;
 			case 3:
-				student.setStudentEmail(input);
-				break;
+				student.setStudentWeight(input);
 			case 4:
-				student.setStudentPhone(input);
-				break;
+				student.setPedometerHour(input);
 			default:
 				continue;
 			}
@@ -151,14 +118,10 @@ public class StudentManager implements Serializable {
 		System.out.println("** Student Info Edit Menu **");
 		System.out.println("1. Edit Id ");
 		System.out.println("2. Edit Name ");
-		System.out.println("3. Edit Email ");
-		System.out.println("4. View phone ");
-		System.out.println("5. Exit ");
-		System.out.println("Select one number between 1-6: ");
+		System.out.println("3. Edit Weight ");
+		System.out.println("4. Edit Hour");
+		System.out.println("5. View Kcalory ");
+		System.out.println("6. Exit ");
+		System.out.println("Select one number between 1-7: ");
 	}
-
-
-
-
-
 }

@@ -2,7 +2,7 @@ package student;
 
 import java.util.Scanner;
 
-import exception.EmailFormatException;
+
 
 public interface StudentInput {
 	
@@ -14,13 +14,17 @@ public interface StudentInput {
 	
 	public void setName(String name);
 	
-	public String getEmail();
+	public int getWeight();
+
+	public void setWeight(int weight);
 	
-	public void setEmail(String email) throws EmailFormatException;
+	public int getHour();
+
+	public void setHour(int hour);
 	
-	public void setPhone(String phone);
-	
-	public String getPhone();
+	public int getKcalory();
+
+	public void setKcalory(int kcalory);
 	
 	public void getUserInput(Scanner input);
 	
@@ -30,7 +34,8 @@ public interface StudentInput {
 	
 	public void setStudentName(Scanner input);
 	
-	public void setStudentEmail(Scanner input);
+	public void setStudentWeight(Scanner input);
 	
-	public void setStudentPhone(Scanner input);
+	public void setPedometerHour(Scanner input);
+	
 }

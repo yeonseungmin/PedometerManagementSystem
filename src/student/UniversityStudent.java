@@ -6,19 +6,21 @@ public class UniversityStudent extends Student {
 
 	
 	public UniversityStudent(StudentKind kind) {
-		super(kind);
+		super();
 	}
 	
 	public void getUserInput(Scanner input) {
 		setStudentID( input);
 		setStudentName( input);
-		setStudentEmail(input);
-		setStudentPhone(input);
-		
+		setStudentWeight( input);
+		setPedometerHour( input);
 	}
 	
 	public void printInfo() {
 		String skind = getKindString();
-		System.out.println("kind:" + skind + " name: " + name + " id: " + id + " email: " +email + " phone: " + phone);
+		kcalory = hour*4*weight;
+		System.out.println("kind:" + skind + " name: " + name + " id: " + id + " weight: " + weight + " hour: " + hour + " kcalory: " + kcalory);
 	}
+
+
 }

@@ -17,6 +17,39 @@ public class StudentViewer extends JPanel {
 	
 	StudentManager studentManager;
 
+	public StudentManager getStudentManager() {
+		return studentManager;
+	}
+
+	public void setStudentManager(StudentManager studentManager) {
+		this.studentManager = studentManager;
+		this.removeAll();
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Id");
+		model.addColumn("Name");
+		model.addColumn("Weight");
+		model.addColumn("Hour");
+		model.addColumn("Kcalory");
+
+		for (int i=0; i< studentManager.size(); i++) {
+			Vector row = new Vector();
+			StudentInput si = studentManager.get(i);
+			
+			row.add(si.getId());
+			row.add(si.getName());
+			row.add(si.getWeight());
+			row.add(si.getHour());
+			row.add(si.getKcalory());
+			model.addRow(row);
+		}
+		
+		JTable table = new JTable(model);
+		JScrollPane sp = new JScrollPane(table);
+		
+		this.add(sp);
+	}
+
 	public StudentViewer(WindowFrame frame, StudentManager studentManager) {
 		
 		this.frame = frame;
@@ -27,17 +60,19 @@ public class StudentViewer extends JPanel {
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Id");
 		model.addColumn("Name");
-		model.addColumn("Email");
-		model.addColumn("Contact Info.");
-		
+		model.addColumn("Weight");
+		model.addColumn("Hour");
+		model.addColumn("Kcalory");
+
 		for (int i=0; i< studentManager.size(); i++) {
 			Vector row = new Vector();
 			StudentInput si = studentManager.get(i);
 			
 			row.add(si.getId());
 			row.add(si.getName());
-			row.add(si.getEmail());
-			row.add(si.getPhone());
+			row.add(si.getWeight());
+			row.add(si.getHour());
+			row.add(si.getKcalory());
 			model.addRow(row);
 		}
 		

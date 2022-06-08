@@ -3,50 +3,37 @@ package student;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import exception.EmailFormatException;
+//import exception.EmailFormatException;
 
 public abstract class Student implements StudentInput, Serializable {
-	/**
+
+		/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6502750014073922126L;
+	private static final long serialVersionUID = -7772788164558114352L;
 		protected StudentKind kind = StudentKind.University;
 		protected String name;
 		protected int id;
-		protected String email;
-		protected String phone;
-
+		protected int weight;
+		protected int hour;
+		protected int kcalory;
 		
 		public Student() {
 
 		}
-		public Student(StudentKind kind) {
-			this.kind = kind;
-		}
+
 		
-		public Student(String name, int id) {
-			this.name = name;
-			this.id = id;
-
-		}
-
-		public Student(String name , int id , String email , String phone) {
-
-			this.name = name;
-			this.id = id;
-			this.email = email;
-			this.phone = phone;
-		}
-		
-		public Student(StudentKind kind , String name , int id , String email , String phone) {
+		public Student(StudentKind kind , String name , int id , int weight , int hour, int kcalory) {
 			this.kind = kind;
 			this.name = name;
 			this.id = id;
-			this.email = email;
-			this.phone = phone;
+			this.weight = weight;
+			this.hour = hour;
+			this.kcalory = kcalory;
 		}
 		
-		public StudentKind getKind() {
+		
+	public StudentKind getKind() {
 		return kind;
 	}
 
@@ -70,24 +57,26 @@ public abstract class Student implements StudentInput, Serializable {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setEmail(String email) throws EmailFormatException {
-		if (!email.contains("@") && !email.equals("")) {
-			throw new EmailFormatException();
-		}
-		
-		this.email = email;
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public int getHour() {
+		return hour;
 	}
 
-	public String getPhone() {
-		return phone;
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	public int getKcalory() {
+		return kcalory;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setKcalory(int kcalory) {
+		this.kcalory = hour*4*weight;
 	}
 
 	public abstract void printInfo();
@@ -104,38 +93,29 @@ public abstract class Student implements StudentInput, Serializable {
 		this.setName(name );
 	}
 	
-	public void setStudentEmail(Scanner input) {
-		String email = "";
-		while (!email.contains("@")) {
-		
-			System.out.print(" Student Email: ");
-			email = input.next();
-			try {
-				this.setEmail(email );
-			} catch (EmailFormatException e) {
-				System.out.println("Incorrect Email Format. put the e-mail address that contains @");
-			}
-		}
+	public void setStudentWeight(Scanner input) {
+		System.out.print(" Student Weight: ");
+		int weight = input.nextInt();
+		this.setWeight(weight );
 	}
-	public void setStudentPhone( Scanner input) {
-		System.out.print(" Phone number: ");
-		String phone = input.next();
-		this.setPhone(phone );
+	
+	public void setPedometerHour(Scanner input) {
+		System.out.print(" Pedometer Hour: ");
+		int hour = input.nextInt();
+		this.setHour(hour );
 	}
+	
+	public void setKcalory(Scanner input) {
+		System.out.print(" Kcalory : ");
+		int kcalory = hour*4*weight;
+		this.setKcalory(kcalory );
+	}
+	
 	public String getKindString() {
 		String skind = "none";
 		switch(this.kind){
 		case University :
 			skind = "Univ.";
-			break;
-		case HighSchool :
-			skind = "High.";
-			break;
-		case MiddleSchool :
-			skind = "Middle.";
-			break;
-		case ElementarySchool :
-			skind = "Elementary.";
 			break;
 		default :
 		}
