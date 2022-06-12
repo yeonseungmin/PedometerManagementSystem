@@ -2,12 +2,17 @@ package gui;
 
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
 
+
+
+import event.StudentViewerCancelListener;
 import manager.StudentManager;
 import student.StudentInput;
 
@@ -17,6 +22,9 @@ public class StudentViewer extends JPanel {
 	
 	StudentManager studentManager;
 
+	
+	
+	
 	public StudentManager getStudentManager() {
 		return studentManager;
 	}
@@ -31,6 +39,20 @@ public class StudentViewer extends JPanel {
 		model.addColumn("Weight");
 		model.addColumn("Hour");
 		model.addColumn("Kcalory");
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new SpringLayout());
+		
+		JButton cancelButton = new JButton("cancel");
+		
+		cancelButton.addActionListener(new StudentViewerCancelListener(frame));
+		
+		panel.add(cancelButton);
+		
+		SpringUtilities.makeCompactGrid(panel, 1, 1, 1, 1, 1, 1);
+		
+		this.add(panel);
+		this.setVisible(true);
 
 		for (int i=0; i< studentManager.size(); i++) {
 			Vector row = new Vector();
@@ -42,12 +64,16 @@ public class StudentViewer extends JPanel {
 			row.add(si.getHour());
 			row.add(si.getKcalory());
 			model.addRow(row);
+			
+
 		}
 		
 		JTable table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
+		
+		
 	}
 
 	public StudentViewer(WindowFrame frame, StudentManager studentManager) {
@@ -74,14 +100,9 @@ public class StudentViewer extends JPanel {
 			row.add(si.getHour());
 			row.add(si.getKcalory());
 			model.addRow(row);
+
 		}
 		
-		JTable table = new JTable(model);
-		JScrollPane sp = new JScrollPane(table);
-		
-		this.add(sp);
-		
-
 	}
 
 }
