@@ -120,8 +120,7 @@ public class StudentManager implements Serializable {
 		System.out.println("2. Edit Name ");
 		System.out.println("3. Edit Weight ");
 		System.out.println("4. Edit Hour");
-		System.out.println("5. View Kcalory ");
-		System.out.println("6. Exit ");
-		System.out.println("Select one number between 1-7: ");
+		System.out.println("5. Exit ");
+		System.out.println("Select one number between 1-6: ");
 	}
 }
